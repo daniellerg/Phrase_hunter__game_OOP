@@ -31,7 +31,8 @@ class Game:
 
         
     def get_guess(self):
-        # Got the isalpha() from - https://stackoverflow.com/questions/18667410/how-can-i-check-if-a-string-only-contains-letters-in-python      
+        # Got the isalpha() from - https://stackoverflow.com/questions/18667410/how-can-i-check-if-a-string-only-contains-letters-in-python 
+        # Retrieves and returns the guess from the user, while giving feedback for incorrect or undesirable guesses
         guess = input('Enter the letter you would like to guess:  ')       
         if not self.active_phrase.check_letter(guess):
             print('Try again!')
@@ -52,6 +53,7 @@ class Game:
 
     
     def start(self):
+        # Displays the opening welcome header and starts and runs the game 
         self.welcome()
         while self.game_over() == False:
             self.active_phrase.display(self.guesses)
@@ -61,6 +63,7 @@ class Game:
 
             
     def game_over(self):
+        # Checks to see if game has been won or lost and displays appropriate verbiage
         if self.active_phrase.check_complete(self.guesses) == True:
             print('Congratulations! You guessed the phrase!','\n')
             self.active_phrase.display(self.guesses)
@@ -73,6 +76,7 @@ class Game:
 
         
     def play_again(self):
+        # Prompts the user to see if they would like to play again
         while True:
             try:
                 play_again = input('Would you like to play again?(Y/N)  ')
@@ -83,6 +87,7 @@ class Game:
                 
 
     def game_reset(self, answer):
+        # Follows through with play_again()'s input as well as resets the counters if user plays again
         if answer.lower() == 'y':
             print('Great, Here we go!')
             self.missed = 0
