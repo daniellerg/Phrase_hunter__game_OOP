@@ -55,13 +55,15 @@ class Game:
         self.welcome()
         while self.game_over() == False:
             self.active_phrase.display(self.guesses)
-            print('\n','You have made {} out of 5 incorrect guesses.'.format(self.missed),'\n')
+            print('\n')
             self.get_guess() 
-            
+            print('\n','You have made {} out of 5 incorrect guesses.'.format(self.missed),'\n')
+
             
     def game_over(self):
         if self.active_phrase.check_complete(self.guesses) == True:
             print('Congratulations! You guessed the phrase!','\n')
+            self.active_phrase.display(self.guesses)
             return True
         elif self.missed == 5:
             print('Bummer, you ran out of guesses! Maybe next time!','\n')
