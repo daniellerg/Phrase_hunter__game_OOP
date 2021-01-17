@@ -77,7 +77,7 @@ class Game:
             try:
                 play_again = input('Would you like to play again?(Y/N)  ')
                 self.game_reset(play_again)                                    
-            except ValueError or TypeError:
+            except TypeError:
                 print('Try either Y/N')             
                 play_again = input('Would you like to play again?(Y/N)  ')
                 
