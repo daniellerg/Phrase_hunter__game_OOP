@@ -14,7 +14,7 @@ class Game:
                            Phrase('you shall not pass'), 
                            Phrase('candygram for mongo')]            
         self.active_phrase = self.get_random_phrase()        
-        self.guesses = []   
+        self.guesses = [' ']   
                 
     
     def get_random_phrase(self):
@@ -62,7 +62,6 @@ class Game:
     def game_over(self):
         if self.active_phrase.check_complete(self.guesses) == True:
             print('Congratulations! You guessed the phrase!','\n')
-            print('Your phrase was {}.'.format(self.active_phrase))
             return True
         elif self.missed == 5:
             print('Bummer, you ran out of guesses! Maybe next time!','\n')
@@ -75,15 +74,18 @@ class Game:
         while True:
             try:
                 play_again = input('Would you like to play again?(Y/N)  ')
-                if play_again.lower() == 'y':
-                    print('Great, Here we go!')
-                    self.missed = 0
-                    self.start()
-                elif play_again.lower() == 'n':
-                    sys.exit('Too bad! Thanks for playing!')
+                self.game_reset(play_again)                                    
             except ValueError:
                 print('Try either Y/N')             
                 play_again = input('Would you like to play again?(Y/N)  ')
                 
-    
-  
+
+    def game_reset(self, answer):
+        if answer.lower() == 'y':
+            print('Great, Here we go!')
+            self.missed = 0
+            self.active_phrase = self.get_random_phrase()        
+            self.guesses = [' ']
+            self.start()
+        elif answer.lower() == 'n':
+            sys.exit('Too bad! Thanks for playing!')
